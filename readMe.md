@@ -32,6 +32,7 @@ print (array)
 # If the array is already sorted, it has time complexity of O(N) 
 
 def insertionSort(myList):
+    
     # loop through every element in the array
     for index in range(1, len(myList)):
         # Get the current value of the element at the current index 'position'
@@ -39,15 +40,17 @@ def insertionSort(myList):
         position = index
 
         # Compare the the previous value(s) with the current and swap if greather than current value 
+
         while position > 0 and myList[position-1] > current:
             # Swap the previous value with the value at index 'position'
             myList[position] = myList[position-1]
+            
             # Reduce the position so that we can compare the value at that index against the current value again
             position -= 1
+        
         # Let the current value (current) be at the last know position
         myList[position] = current
 
-    # Return the sorted array
     return myList
 
 unsortedArray = [4, 22, 100, 2, 3, 4, 2]
@@ -55,7 +58,7 @@ sortedArray = insertionSort(unsortedArray)
 print(sortedArray)
 ```
 
-## 3) Looking at the below code, write down the final values of A0, A1, ...An. Please explain the answers.
+## 3) Looking at the below code, write down the final values of A0, A1, ...An. Answer Explained
 >A0 = dict(zip(('a','b','c','d','e'),(1,2,3,4,5)))
 >
 >A1 = range(10)
@@ -107,6 +110,8 @@ _A Generator is used to copy and create a new list (parent) that contain differe
 
 `SELECT COUNT(*) as total_users FROM (SELECT user_id, COUNT(user_id) as image_count FROM event_log group by user_id HAVING COUNT(user_id) > 1000 and COUNT(user_id) < 2000)`
 
+
+
 ## 5) Spark code to give date range having maximum no. of visitors using both tables.
 
 ```
@@ -126,6 +131,7 @@ Result = spark.sql(“SELECT startDate, endDate, MAX(total) as totalVisit from (
 ```
 
 ## 6) Fixing the wrong query
+You can not use WHERE keyword with aggregate functions. So the correction will be to use the HAVING keyword after the GROUP BY keyword.
 
 `SELECT subject_code, AVG (marks) FROM students  
 GROUP BY subject_code HAVING AVG(marks) > 75`
